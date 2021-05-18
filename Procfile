@@ -1,0 +1,1 @@
+web: java -jar target\lambdarest-0.0.2-SNAPSHOT.jar
