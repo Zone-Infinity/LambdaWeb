@@ -24,11 +24,12 @@ public class WebhookController {
     public @ResponseBody
     Response postWebhook(@RequestBody BotVote vote, HttpServletRequest request) {
         if (request.getHeader("Authorization").equals(System.getenv("TOKEN"))) {
-            final String user = vote.getUser();
-            final String bot = vote.getBot();
-            if (vote.getType().equals("upvote"))
+            final String user = vote.user();
+            final String bot = vote.bot();
+            final String type = vote.type();
+            if (type.equals("upvote"))
                 WebhookClient.withUrl(System.getenv("VOTE_WEBHOOK")).send(String.format("%s voted %s", user, bot));
-            else if(vote.getType().equals("test"))
+            else if (type.equals("test"))
                 WebhookClient.withUrl(System.getenv("VOTE_WEBHOOK")).send("TEST Successful");
 
             LOGGER.info("Successfully got request and sent msg");

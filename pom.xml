@@ -14,8 +14,9 @@
     <name>lambdarest</name>
     <description>Rest Service for Lambda Discord Bot</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>16</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,7 +34,6 @@
             <artifactId>okhttp</artifactId>
             <version>4.9.0</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -60,6 +60,19 @@
                         <delimiter>@</delimiter>
                     </delimiters>
                     <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <jdkVersion>16.0.1</jdkVersion>
+                    <appName>lambda3006</appName>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -jar target/lambdarest-0.0.2-SNAPSHOT.jar</web>
+                    </processTypes>
                 </configuration>
             </plugin>
 
